@@ -29,7 +29,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="regBtn" layoutX="393.0" layoutY="354.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #00fca8;" text="Register" textFill="#580eeb">
+      <Button fx:id="regBtn" layoutX="393.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleRegBtn" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #00fca8;" text="Register" textFill="#580eeb">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
