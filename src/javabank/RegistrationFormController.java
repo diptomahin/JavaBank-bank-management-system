@@ -4,17 +4,22 @@
  */
 package javabank;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -45,13 +50,33 @@ public class RegistrationFormController implements Initializable {
     private TextField reg_thana;
     @FXML
     private TextField reg_district;
-
+    @FXML
+    private Button comp_reg_btn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
+    @FXML
+    private void handleRegistration(ActionEvent event) {
+        try {
+            // Load the FXML for the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+            Parent root = loader.load();
+
+            // Get current stage and set the new scene
+            Stage stage = (Stage) comp_reg_btn.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("JavaBank Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
