@@ -2,18 +2,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javabank.DashboardController">
+<BorderPane prefWidth="800.0"  xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javabank.DashboardController">
    <top>
-      <VBox style="-fx-background-color: #580eeb; -fx-padding: 20;">
+      <VBox fx:id="dashboard" style="-fx-background-color: #580eeb; -fx-padding: 20;">
          <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="JavaBank" textFill="WHITE" />
          <Label fx:id="welcomeLabel" style="-fx-font-size: 16px;" text="Welcome, User!" textFill="#ecf0f1">
             <VBox.margin>
@@ -44,16 +49,56 @@
                </content>
             </Tab>
             <Tab text="Withdrawal">
-               <content>
+                <content>
                   <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label prefHeight="100.0" prefWidth="252.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Under Constraction !!!" />
+                     <Label text="Make a Withdrawal" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                     <VBox alignment="CENTER" spacing="15.0" maxWidth="400.0">
+                        <Label text="Enter Amount:" style="-fx-font-size: 16px; -fx-text-fill: #34495e;" />
+                        <TextField fx:id="withdrawalAmountField" promptText="0.00" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <TextArea fx:id="withdrawalDescriptionArea" promptText="Description (optional)" prefRowCount="3" style="-fx-font-size: 14px; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <Button fx:id="withdrawalButton" onAction="#handleWithdrawal" text="Withdraw Funds" style="-fx-font-size: 16px; -fx-padding: 12 30; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" />
+                     </VBox>
                   </VBox>
                </content>
             </Tab>
             <Tab text="Fund Transfer">
-               <content>
+                <content>
                   <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Under Constraction !!!" />
+                     <Label text="Transfer Funds" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                     <VBox alignment="CENTER" spacing="15.0" maxWidth="400.0">
+                        <Label text="Recipient Account:" style="-fx-font-size: 16px; -fx-text-fill: #34495e;" />
+                        <TextField fx:id="recipientAccountField" promptText="Account Number" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <Label text="Enter Amount:" style="-fx-font-size: 16px; -fx-text-fill: #34495e;" />
+                        <TextField fx:id="transferAmountField" promptText="0.00" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <TextArea fx:id="transferDescriptionArea" promptText="Transfer note (optional)" prefRowCount="3" style="-fx-font-size: 14px; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <Button fx:id="transferButton" onAction="#handleTransfer" text="Transfer Funds" style="-fx-font-size: 16px; -fx-padding: 12 30; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" />
+                     </VBox>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Transaction History">
+                <content>
+                  <VBox spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 20;">
+                     <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label text="Transaction History" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                        <Button fx:id="refreshHistoryButton" onAction="#handleRefreshHistory" text="Refresh" style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;" />
+                     </HBox>
+                     <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <Label text="Filter by:" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" />
+                        <ComboBox fx:id="transactionTypeFilter" promptText="All Transactions" style="-fx-font-size: 14px;" />
+                        <DatePicker fx:id="fromDatePicker" promptText="From Date" style="-fx-font-size: 14px;" />
+                        <DatePicker fx:id="toDatePicker" promptText="To Date" style="-fx-font-size: 14px;" />
+                        <Button fx:id="applyFilterButton" onAction="#handleApplyFilter" text="Apply Filter" style="-fx-font-size: 14px; -fx-padding: 6 12; -fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;" />
+                     </HBox>
+                     <TableView fx:id="transactionHistoryTable" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                        <columns>
+                           <TableColumn fx:id="dateColumn" text="Date" prefWidth="120.0" />
+                           <TableColumn fx:id="typeColumn" text="Type" prefWidth="100.0" />
+                           <TableColumn fx:id="amountColumn" text="Amount" prefWidth="100.0" />
+                           <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200.0" />
+                           <TableColumn fx:id="balanceAfterColumn" text="Balance After" prefWidth="120.0" />
+                        </columns>
+                     </TableView>
                   </VBox>
                </content>
             </Tab>
