@@ -8,85 +8,78 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="501.0" prefWidth="564.0" style="-fx-background-color: #580eeb;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javabank.RegistrationFormController">
+<AnchorPane id="AnchorPane" prefHeight="501.0" prefWidth="564.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javabank.RegistrationFormController">
    <children>
-      <Label layoutX="186.0" layoutY="14.0" text="Registration Form" textFill="#00fca8" underline="true">
+      <Label layoutX="186.0" layoutY="14.0" text="Registration Form" textFill="#070505" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="reg_namefield" layoutX="139.0" layoutY="88.0" promptText="Enter Full Name" />
-      <TextField fx:id="reg_emailfield" layoutX="139.0" layoutY="124.0" promptText="Enter Email" />
-      <TextField fx:id="reg_phonefield" layoutX="139.0" layoutY="160.0" promptText="Enter Phone Number" />
-      <RadioButton fx:id="male" layoutX="402.0" layoutY="93.0" mnemonicParsing="false" text="Male" textFill="#fffbfb">
+      <TextField fx:id="reg_namefield" layoutX="161.0" layoutY="89.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Full Name" />
+      <TextField fx:id="reg_emailfield" layoutX="161.0" layoutY="124.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Email" />
+      <TextField fx:id="reg_phonefield" layoutX="161.0" layoutY="160.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Phone Number" />
+      <RadioButton fx:id="male" layoutX="438.0" layoutY="93.0" mnemonicParsing="false" text="Male">
          <toggleGroup>
             <ToggleGroup fx:id="reg_gender" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="others" layoutX="403.0" layoutY="164.0" mnemonicParsing="false" text="Others" textFill="#fffbfb" toggleGroup="$reg_gender" />
-      <RadioButton fx:id="female" layoutX="402.0" layoutY="128.0" mnemonicParsing="false" text="Female" textFill="#fffbfb" toggleGroup="$reg_gender" />
-      <DatePicker fx:id="reg_datefiled" layoutX="161.0" layoutY="207.0" />
-      <Label layoutX="52.0" layoutY="91.0" text="Full Name" textFill="#fffdfd">
+      <RadioButton fx:id="others" layoutX="439.0" layoutY="164.0" mnemonicParsing="false" text="Others" toggleGroup="$reg_gender" />
+      <RadioButton fx:id="female" layoutX="438.0" layoutY="128.0" mnemonicParsing="false" text="Female" toggleGroup="$reg_gender" />
+      <DatePicker fx:id="reg_datefiled" layoutX="161.0" layoutY="198.0" />
+      <Label layoutX="52.0" layoutY="91.0" text="Full Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="127.0" text="Email" textFill="#fffdfd">
+      <Label layoutX="52.0" layoutY="127.0" text="Email">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="52.0" layoutY="163.0" text="Phone" textFill="#fffdfd">
+      <Label layoutX="52.0" layoutY="163.0" text="Phone" textFill="#403b3b">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="322.0" layoutY="91.0" text="Gender" textFill="#fffdfd">
+      <Label layoutX="366.0" layoutY="91.0" text="Gender">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="51.0" layoutY="210.0" text="Date Of Birth" textFill="#fffdfd">
+      <Label layoutX="51.0" layoutY="201.0" text="Date Of Birth">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="51.0" layoutY="251.0" text="Address" textFill="#fffdfd" underline="true">
+      <Label layoutX="51.0" layoutY="251.0" text="Address" underline="true">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="292.0" text="Street Address" textFill="#fffdfd">
+      <Label layoutX="50.0" layoutY="292.0" text="Street Address">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="337.0" text="Thana/Upazila" textFill="#fffdfd">
+      <Label layoutX="47.0" layoutY="337.0" text="Thana/Upazila">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <TextArea fx:id="reg_streetAddress" layoutX="159.0" layoutY="283.0" prefHeight="37.0" prefWidth="325.0" promptText="Enter Street Address" />
       <TextField fx:id="reg_thana" layoutX="159.0" layoutY="335.0" prefHeight="25.0" prefWidth="117.0" promptText="Enter Thana/Upazila" />
-      <Label layoutX="288.0" layoutY="340.0" text="District" textFill="#fffdfd">
+      <Label layoutX="288.0" layoutY="340.0" text="District">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <TextField fx:id="reg_district" layoutX="352.0" layoutY="337.0" prefHeight="25.0" prefWidth="134.0" promptText="Enter District" />
-      <Button fx:id="comp_reg_btn" layoutX="180.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="37.0" prefWidth="204.0" style="-fx-background-color: #00fca8;" text="Complete Registration" textFill="#580eeb">
+      <Button fx:id="comp_reg_btn" layoutX="186.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="4.0" prefWidth="204.0" style="-fx-background-color: black;" text="Complete Registration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Circle fill="#00fca8" layoutX="550.0" layoutY="22.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#00fca8" layoutX="524.0" layoutY="14.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#00fca8" layoutX="554.0" layoutY="49.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#00fca8" layoutX="22.0" layoutY="479.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#00fca8" layoutX="22.0" layoutY="447.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#00fca8" layoutX="52.0" layoutY="479.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

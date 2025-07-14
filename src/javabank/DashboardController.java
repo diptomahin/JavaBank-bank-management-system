@@ -13,10 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -27,10 +29,6 @@ import javafx.scene.layout.VBox;
 public class DashboardController implements Initializable {
 
     @FXML
-    private Label welcomeLabel;
-    @FXML
-    private Label balanceLabel;
-    @FXML
     private Label statusLabel;
     @FXML
     private Label lastTransactionLabel;
@@ -40,8 +38,6 @@ public class DashboardController implements Initializable {
     private TextArea depositDescriptionArea;
     @FXML
     private Button depositButton;
-    @FXML
-    private VBox dashboard;
     @FXML
     private TextField withdrawalAmountField;
     @FXML
@@ -78,6 +74,34 @@ public class DashboardController implements Initializable {
     private TableColumn<?, ?> descriptionColumn;
     @FXML
     private TableColumn<?, ?> balanceAfterColumn;
+    @FXML
+    private Label activeViewLabel;
+    @FXML
+    private VBox sidebar;
+    @FXML
+    private Button depositNavButton;
+    @FXML
+    private Button withdrawalNavButton;
+    @FXML
+    private Button transferNavButton;
+    @FXML
+    private Button historyNavButton;
+    @FXML
+    private Label accountNumberLabel;
+    @FXML
+    private Label lastLoginLabel;
+    @FXML
+    private StackPane contentArea;
+    @FXML
+    private VBox depositView;
+    @FXML
+    private VBox withdrawalView;
+    @FXML
+    private VBox transferView;
+    @FXML
+    private VBox historyView;
+    @FXML
+    private VBox dashboard;
 
     /**
      * Initializes the controller class.
@@ -106,5 +130,25 @@ public class DashboardController implements Initializable {
     private void handleApplyFilter(ActionEvent event) {
     }
 
+    @FXML
+    private void showDepositView(ActionEvent event) {
+    }
+
+    @FXML
+    private void showWithdrawalView(ActionEvent event) {
+    }
+
+    @FXML
+    private void showTransferView(ActionEvent event) {
+    }
+
+    @FXML
+    private void showHistoryView(ActionEvent event) {
+    }
+
+
+
+
+    
 
 }
