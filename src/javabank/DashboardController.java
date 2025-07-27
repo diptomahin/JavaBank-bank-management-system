@@ -1000,8 +1000,8 @@ public class DashboardController implements Initializable {
 
             // Reset window to normal size for login
             currentStage.setMaximized(false);
-            currentStage.setWidth(800);
-            currentStage.setHeight(600);
+            currentStage.setWidth(564);
+            currentStage.setHeight(501);
             currentStage.centerOnScreen();
 
             currentStage.show();

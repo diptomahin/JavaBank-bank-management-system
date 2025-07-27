@@ -14,148 +14,244 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javabank.DashboardController">
-   <top>
-      <VBox prefHeight="50.0" prefWidth="701.0" style="-fx-background-color: black; -fx-padding: 20;">
-         <Label fx:id="welcomeLabel" style="-fx-font-size: 16px;" text="Welcome, User!" textFill="#ecf0f1">
-            <VBox.margin>
-               <Insets top="5.0" />
-            </VBox.margin>
-         </Label>
-         <Label fx:id="balanceLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Current Balance: $0.00" textFill="#f39c12">
-            <VBox.margin>
-               <Insets top="10.0" />
-            </VBox.margin>
-         </Label>
-      </VBox>
-   </top>
    <center>
-      <TabPane style="-fx-background-color: #ecf0f1;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0">
+      <TabPane style="-fx-background-color: #f8f9fa; -fx-border-color: #e9ecef; -fx-border-width: 0 0 1 0;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="35.0">
          <tabs>
             <Tab text="Cash In">
                <content>
-                  <VBox alignment="CENTER" prefHeight="721.0" prefWidth="702.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Cash In to Account" />
-                     <VBox alignment="CENTER" maxWidth="585.0" prefHeight="576.0" prefWidth="585.0" spacing="15.0">
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Select Mobile Banking Service:" />
-                        <ComboBox fx:id="cashInServiceCombo" promptText="Choose Service" style="-fx-font-size: 16px; -fx-pref-width: 300;" />
+                  <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="702.0" spacing="25.0" style="-fx-background-color: #ffffff; -fx-padding: 30 60 30 60;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     
+                     <!-- Header Section -->
+                     <VBox alignment="CENTER" spacing="8.0">
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Cash In to Account" />
+                        <Label style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" text="Add funds to your account using mobile banking services" />
+                     </VBox>
+                     
+                     <!-- Form Section -->
+                     <VBox alignment="CENTER" maxWidth="500.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-padding: 30;">
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Mobile Banking Service" />
+                           <ComboBox fx:id="cashInServiceCombo" promptText="Select a service" style="-fx-font-size: 14px; -fx-pref-width: 420; -fx-pref-height: 40; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Mobile Number:" />
-                        <HBox alignment="CENTER" spacing="10.0">
-                           <TextField fx:id="cashInMobileField" promptText="01XXXXXXXXX" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-pref-width: 200;" />
-                           <Button fx:id="loadSavedNumberButton" onAction="#handleLoadSavedNumber" style="-fx-font-size: 12px; -fx-padding: 8 12; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 3;" text="Load Saved" />
-                        </HBox>
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Mobile Number" />
+                           <HBox alignment="CENTER_LEFT" spacing="12.0">
+                              <TextField fx:id="cashInMobileField" promptText="01XXXXXXXXX" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 300; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                              <Button fx:id="loadSavedNumberButton" onAction="#handleLoadSavedNumber" style="-fx-font-size: 12px; -fx-pref-height: 40; -fx-pref-width: 108; -fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Load Saved" />
+                           </HBox>
+                           <CheckBox fx:id="saveNumberCheckbox" style="-fx-font-size: 13px; -fx-text-fill: #6c757d;" text="Save this number for future use" />
+                        </VBox>
                         
-                        <CheckBox fx:id="saveNumberCheckbox" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Save this number for future use" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Amount (BDT)" />
+                           <TextField fx:id="cashInAmountField" promptText="0.00" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Enter Amount:" />
-                        <TextField fx:id="cashInAmountField" promptText="0.00" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="PIN/Password" />
+                           <TextField fx:id="cashInPinField" promptText="Enter your mobile banking PIN" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="PIN/Password:" />
-                        <TextField fx:id="cashInPinField" promptText="Enter your mobile banking PIN" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Transaction Note (Optional)" />
+                           <TextArea fx:id="cashInDescriptionArea" prefRowCount="3" promptText="Add a note for this transaction..." style="-fx-font-size: 14px; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12;" />
+                        </VBox>
                         
-                        <TextArea fx:id="cashInDescriptionArea" prefRowCount="2" promptText="Transaction note (optional)" style="-fx-font-size: 14px; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
-                        
-                        <Button fx:id="cashInButton" onAction="#handleCashIn" prefHeight="49.0" prefWidth="270.0" style="-fx-font-size: 16px; -fx-padding: 12 30; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Cash In" />
+                        <Button fx:id="cashInButton" onAction="#handleCashIn" prefHeight="50.0" prefWidth="420.0" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Complete Cash In Transaction">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
                      </VBox>
                   </VBox>
                </content>
             </Tab>
+            
             <Tab text="Cash Out">
                <content>
-                  <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Cash Out from Account" />
-                     <VBox alignment="CENTER" maxWidth="584.0" prefHeight="561.0" prefWidth="584.0" spacing="15.0">
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Select Mobile Banking Service:" />
-                        <ComboBox fx:id="cashOutServiceCombo" promptText="Choose Service" style="-fx-font-size: 16px; -fx-pref-width: 300;" />
+                  <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="702.0" spacing="25.0" style="-fx-background-color: #ffffff; -fx-padding: 30 60 30 60;">
+                     
+                     <!-- Header Section -->
+                     <VBox alignment="CENTER" spacing="8.0">
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Cash Out from Account" />
+                        <Label style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" text="Withdraw funds from your account using mobile banking services" />
+                     </VBox>
+                     
+                     <!-- Form Section -->
+                     <VBox alignment="CENTER" maxWidth="500.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-padding: 30;">
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Mobile Banking Service" />
+                           <ComboBox fx:id="cashOutServiceCombo" promptText="Select a service" style="-fx-font-size: 14px; -fx-pref-width: 420; -fx-pref-height: 40; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Mobile Number:" />
-                        <HBox alignment="CENTER" spacing="10.0">
-                           <TextField fx:id="cashOutMobileField" promptText="01XXXXXXXXX" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5; -fx-pref-width: 200;" />
-                           <Button fx:id="loadSavedNumberButtonCashOut" onAction="#handleLoadSavedNumberCashOut" style="-fx-font-size: 12px; -fx-padding: 8 12; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 3;" text="Load Saved" />
-                        </HBox>
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Mobile Number" />
+                           <HBox alignment="CENTER_LEFT" spacing="12.0">
+                              <TextField fx:id="cashOutMobileField" promptText="01XXXXXXXXX" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 300; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                              <Button fx:id="loadSavedNumberButtonCashOut" onAction="#handleLoadSavedNumberCashOut" style="-fx-font-size: 12px; -fx-pref-height: 40; -fx-pref-width: 108; -fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Load Saved" />
+                           </HBox>
+                           <CheckBox fx:id="saveNumberCheckboxCashOut" style="-fx-font-size: 13px; -fx-text-fill: #6c757d;" text="Save this number for future use" />
+                        </VBox>
                         
-                        <CheckBox fx:id="saveNumberCheckboxCashOut" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Save this number for future use" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Amount (BDT)" />
+                           <TextField fx:id="cashOutAmountField" promptText="0.00" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Enter Amount:" />
-                        <TextField fx:id="cashOutAmountField" promptText="0.00" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="PIN/Password" />
+                           <TextField fx:id="cashOutPinField" promptText="Enter your mobile banking PIN" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
                         
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="PIN/Password:" />
-                        <TextField fx:id="cashOutPinField" promptText="Enter your mobile banking PIN" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Transaction Note (Optional)" />
+                           <TextArea fx:id="cashOutDescriptionArea" prefRowCount="3" promptText="Add a note for this transaction..." style="-fx-font-size: 14px; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12;" />
+                        </VBox>
                         
-                        <TextArea fx:id="cashOutDescriptionArea" prefRowCount="2" promptText="Transaction note (optional)" style="-fx-font-size: 14px; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
-                        
-                        <Button fx:id="cashOutButton" onAction="#handleCashOut" prefHeight="49.0" prefWidth="207.0" style="-fx-font-size: 16px; -fx-padding: 12 30; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Cash Out" />
+                        <Button fx:id="cashOutButton" onAction="#handleCashOut" prefHeight="50.0" prefWidth="420.0" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Complete Cash Out Transaction">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
                      </VBox>
                   </VBox>
                </content>
             </Tab>
+            
             <Tab text="Fund Transfer">
                <content>
-                  <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Transfer Funds" />
-                     <VBox alignment="CENTER" maxWidth="400.0" spacing="15.0">
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Recipient Account:" />
-                        <TextField fx:id="recipientAccountField" promptText="Account Number" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
-                        <Label style="-fx-font-size: 16px; -fx-text-fill: #34495e;" text="Enter Amount:" />
-                        <TextField fx:id="transferAmountField" promptText="0.00" style="-fx-font-size: 16px; -fx-padding: 10; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
-                        <TextArea fx:id="transferDescriptionArea" prefRowCount="3" promptText="Transfer note (optional)" style="-fx-font-size: 14px; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-background-radius: 5;" />
-                        <Button fx:id="transferButton" onAction="#handleTransfer" style="-fx-font-size: 16px; -fx-padding: 12 30; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Transfer Funds" />
+                  <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="702.0" spacing="25.0" style="-fx-background-color: #ffffff; -fx-padding: 30 60 30 60;">
+                     
+                     <!-- Header Section -->
+                     <VBox alignment="CENTER" spacing="8.0">
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Transfer Funds" />
+                        <Label style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" text="Send money to another account securely" />
+                     </VBox>
+                     
+                     <!-- Form Section -->
+                     <VBox alignment="CENTER" maxWidth="500.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-padding: 30;">
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Recipient Account Number" />
+                           <TextField fx:id="recipientAccountField" promptText="Enter recipient account number" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
+                        
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Transfer Amount (BDT)" />
+                           <TextField fx:id="transferAmountField" promptText="0.00" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                        </VBox>
+                        
+                        <VBox spacing="8.0">
+                           <Label style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Transfer Note (Optional)" />
+                           <TextArea fx:id="transferDescriptionArea" prefRowCount="4" promptText="Add a description for this transfer..." style="-fx-font-size: 14px; -fx-pref-width: 420; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12;" />
+                        </VBox>
+                        
+                        <Button fx:id="transferButton" onAction="#handleTransfer" prefHeight="50.0" prefWidth="420.0" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-background-color: #007bff; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Complete Fund Transfer">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
                      </VBox>
                   </VBox>
                </content>
             </Tab>
+            
             <Tab text="Transaction History">
                 <content>
-                  <VBox spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 20;">
-                     <HBox alignment="CENTER_LEFT" spacing="15.0">
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Transaction History" />
-                        <Button fx:id="refreshHistoryButton" onAction="#handleRefreshHistory" style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;" text="Refresh" />
+                  <VBox spacing="25.0" style="-fx-background-color: #ffffff; -fx-padding: 40 60 40 60;">
+                     <!-- Header Section -->
+                     <HBox alignment="CENTER_LEFT" spacing="20.0">
+                        <VBox spacing="4.0">
+                           <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Transaction History" />
+                           <Label style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" text="View and manage your transaction records" />
+                        </VBox>
+                        <Button fx:id="refreshHistoryButton" onAction="#handleRefreshHistory" style="-fx-font-size: 14px; -fx-pref-height: 36; -fx-pref-width: 100; -fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Refresh" />
                      </HBox>
-                     <HBox alignment="CENTER_LEFT" spacing="10.0">
-                        <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Filter by:" />
-                        <ComboBox fx:id="transactionTypeFilter" promptText="All Transactions" style="-fx-font-size: 14px;" />
-                        <DatePicker fx:id="fromDatePicker" promptText="From Date" style="-fx-font-size: 14px;" />
-                        <DatePicker fx:id="toDatePicker" promptText="To Date" style="-fx-font-size: 14px;" />
-                        <Button fx:id="applyFilterButton" onAction="#handleApplyFilter" style="-fx-font-size: 14px; -fx-padding: 6 12; -fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 3; -fx-cursor: hand;" text="Apply Filter" />
-                     </HBox>
-                     <TableView fx:id="transactionHistoryTable" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5;">
+                     
+                     <!-- Filter Section -->
+                     <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 20;">
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Filter Transactions" />
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="TYPE" />
+                              <ComboBox fx:id="transactionTypeFilter" promptText="All Transactions" style="-fx-font-size: 14px; -fx-pref-width: 160; -fx-pref-height: 36; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                           </VBox>
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="FROM DATE" />
+                              <DatePicker fx:id="fromDatePicker" promptText="Start Date" style="-fx-font-size: 14px; -fx-pref-width: 140; -fx-pref-height: 36; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                           </VBox>
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="TO DATE" />
+                              <DatePicker fx:id="toDatePicker" promptText="End Date" style="-fx-font-size: 14px; -fx-pref-width: 140; -fx-pref-height: 36; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                           </VBox>
+                           <VBox alignment="BOTTOM_LEFT">
+                              <Button fx:id="applyFilterButton" onAction="#handleApplyFilter" style="-fx-font-size: 14px; -fx-pref-height: 36; -fx-pref-width: 120; -fx-background-color: #6f42c1; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Apply Filter" />
+                           </VBox>
+                        </HBox>
+                     </VBox>
+                     
+                     <!-- Table Section -->
+                     <TableView fx:id="transactionHistoryTable" style="-fx-background-color: white; -fx-border-color: #e9ecef; -fx-border-radius: 8; -fx-background-radius: 8; -fx-table-cell-border-color: #f8f9fa;">
                         <columns>
-                           <TableColumn fx:id="dateColumn" prefWidth="120.0" text="Date" />
-                           <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
-                           <TableColumn fx:id="amountColumn" prefWidth="100.0" text="Amount" />
-                           <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description" />
-                           <TableColumn fx:id="balanceAfterColumn" prefWidth="120.0" text="Balance After" />
+                           <TableColumn fx:id="dateColumn" prefWidth="140.0" text="Date and Time" />
+                           <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Transaction Type" />
+                           <TableColumn fx:id="amountColumn" prefWidth="120.0" text="Amount (BDT)" />
+                           <TableColumn fx:id="descriptionColumn" prefWidth="220.0" text="Description" />
+                           <TableColumn fx:id="balanceAfterColumn" prefWidth="140.0" text="Balance After" />
                         </columns>
                      </TableView>
                   </VBox>
                </content>
             </Tab>
+            
             <Tab text="Saved Numbers">
                <content>
-                  <VBox spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30;">
-                     <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Manage Saved Numbers" />
+                  <VBox spacing="30.0" style="-fx-background-color: #ffffff; -fx-padding: 40 60 40 60;">
+                     <!-- Header Section -->
+                     <VBox spacing="8.0">
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Manage Saved Numbers" />
+                        <Label style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" text="Save and manage your frequently used mobile banking numbers" />
+                     </VBox>
                      
-                     <VBox spacing="15.0">
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;" text="Add New Number:" />
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
-                           <ComboBox fx:id="saveServiceCombo" promptText="Service" style="-fx-font-size: 14px; -fx-pref-width: 120;" />
-                           <TextField fx:id="saveNumberField" promptText="Mobile Number" style="-fx-font-size: 14px; -fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 3; -fx-background-radius: 3; -fx-pref-width: 150;" />
-                           <TextField fx:id="saveNumberLabelField" promptText="Label (e.g., Personal)" style="-fx-font-size: 14px; -fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 3; -fx-background-radius: 3; -fx-pref-width: 150;" />
-                           <Button fx:id="addNumberButton" onAction="#handleAddSavedNumber" style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 3;" text="Add" />
+                     <!-- Add Number Section -->
+                     <VBox spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 30;">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Add New Number" />
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="SERVICE" />
+                              <ComboBox fx:id="saveServiceCombo" promptText="Select Service" style="-fx-font-size: 14px; -fx-pref-width: 140; -fx-pref-height: 40; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;" />
+                           </VBox>
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="MOBILE NUMBER" />
+                              <TextField fx:id="saveNumberField" promptText="01XXXXXXXXX" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 180; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                           </VBox>
+                           <VBox spacing="5.0">
+                              <Label style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #6c757d;" text="LABEL" />
+                              <TextField fx:id="saveNumberLabelField" promptText="e.g., Personal, Work" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 180; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;" />
+                           </VBox>
+                           <VBox alignment="BOTTOM_LEFT">
+                              <Button fx:id="addNumberButton" onAction="#handleAddSavedNumber" style="-fx-font-size: 14px; -fx-pref-height: 40; -fx-pref-width: 100; -fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Add Number" />
+                           </VBox>
                         </HBox>
                      </VBox>
                      
-                     <VBox spacing="10.0">
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;" text="Saved Numbers:" />
-                        <TableView fx:id="savedNumbersTable" style="-fx-background-color: #ffffff; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-pref-height: 300;">
+                     <!-- Saved Numbers Table -->
+                     <VBox spacing="15.0">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #495057;" text="Your Saved Numbers" />
+                        <TableView fx:id="savedNumbersTable" style="-fx-background-color: white; -fx-border-color: #e9ecef; -fx-border-radius: 8; -fx-background-radius: 8; -fx-pref-height: 300; -fx-table-cell-border-color: #f8f9fa;" >
                            <columns>
-                              <TableColumn fx:id="serviceColumn" prefWidth="100.0" text="Service" />
-                              <TableColumn fx:id="numberColumn" prefWidth="150.0" text="Number" />
-                              <TableColumn fx:id="labelColumn" prefWidth="150.0" text="Label" />
-                              <TableColumn fx:id="actionColumn" prefWidth="100.0" text="Action" />
+                              <TableColumn fx:id="serviceColumn" prefWidth="140.0" text="Banking Service" />
+                              <TableColumn fx:id="numberColumn" prefWidth="180.0" text="Mobile Number" />
+                              <TableColumn fx:id="labelColumn" prefWidth="180.0" text="Label" />
+                              <TableColumn fx:id="actionColumn" prefWidth="120.0" text="Actions" />
                            </columns>
                         </TableView>
                      </VBox>
@@ -165,4 +261,34 @@
          </tabs>
       </TabPane>
    </center>
+   
+   <!-- Top Header -->
+   <top>
+      <HBox prefHeight="90.0" style="-fx-background-color: linear-gradient(to right, #1a1a1a, #2d3436);">
+         <children>
+            <!-- User Info Section -->
+            <VBox alignment="CENTER_LEFT" prefWidth="600.0" style="-fx-padding: 20 30 20 30;">
+               <children>
+                  <Label fx:id="welcomeLabel" style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #ffffff;" text="Welcome, User!">
+                     <VBox.margin>
+                        <Insets bottom="4.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="balanceLabel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffd700;" text="Current Balance: $0.00">
+                  </Label>
+               </children>
+            </VBox>
+            
+            <!-- Spacer to push logout button to the right -->
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Logout Section -->
+            <VBox alignment="CENTER_RIGHT" style="-fx-padding: 20 30 20 20;">
+               <children>
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" prefHeight="45.0" prefWidth="120.0" style="-fx-font-size: 14px; -fx-font-weight: 600; -fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="Sign Out" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
