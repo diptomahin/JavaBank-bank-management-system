@@ -254,29 +254,38 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Navigate to main dashboard after successful login
      */
-    private void navigateToDashboard(ActionEvent event) {
-        try {
-            // Load dashboard/main application window
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-            Parent dashboard = loader.load();
+  private void navigateToDashboard(ActionEvent event) {
+    try {
+        // Load dashboard/main application window
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+        Parent dashboard = loader.load();
 
-            // Pass user data to dashboard controller if needed
-            // DashboardController dashboardController = loader.getController();
-            // dashboardController.setCurrentUser(currentUser);
-            // Create new scene and stage
-            Scene dashboardScene = new Scene(dashboard);
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // CRITICAL: Get the dashboard controller and pass user data
+        DashboardController dashboardController = loader.getController();
+        dashboardController.initializeUserData(currentUser);
 
-            currentStage.setScene(dashboardScene);
-            currentStage.setTitle("JavaBank - Dashboard");
-            currentStage.show();
+        // Create new scene and stage
+        Scene dashboardScene = new Scene(dashboard);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        } catch (IOException e) {
-            showErrorAlert("Navigation Error",
-                    "Unable to open dashboard: " + e.getMessage());
-            System.err.println("Dashboard navigation error: " + e.getMessage());
-        }
+        currentStage.setScene(dashboardScene);
+        currentStage.setTitle("JavaBank - Dashboard");
+        
+        // Make the dashboard full screen
+        currentStage.setMaximized(true);
+        
+        // Optional: Set minimum size to prevent window from being too small
+        currentStage.setMinWidth(1024);
+        currentStage.setMinHeight(768);
+        
+        currentStage.show();
+
+    } catch (IOException e) {
+        showErrorAlert("Navigation Error",
+                "Unable to open dashboard: " + e.getMessage());
+        System.err.println("Dashboard navigation error: " + e.getMessage());
     }
+}
 
     /**
      * Show success alert dialog
